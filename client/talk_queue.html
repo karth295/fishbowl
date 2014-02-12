@@ -1,0 +1,31 @@
+<template name="event_queue">
+  <div class="event_queue">
+    {{#each blurbs}}
+      {{> blurb}}
+      {{> checkbox}}
+    {{/each}}
+    {{> new_opinion}}
+  </div>
+</template>
+
+<template name="blurb">
+  <div id="{{_id}}" class="blurb" style="float: left">
+    <img class="blurb_image" src="{{avatar_image}}" alt="Avatar/Image" />
+    <p class="blurb_text">
+        {{text}}
+    </p>
+  </div>
+</template>
+
+<template name="new_opinion">
+  <div class="new_opinion">
+    Add your own thoughts
+    <input class="opinion_text" type="text" />
+  </div>
+  </template>
+
+<template name="checkbox">
+<div class="checkbox_container" style="float: left">
+  <div id="{{_id}}" class="checkbox {{#if is_checked _id}}checked{{/if}}"></div>
+</div>
+</template>

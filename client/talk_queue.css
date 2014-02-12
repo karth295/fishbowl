@@ -1,0 +1,48 @@
+.event_queue { 
+  border: solid gray 2px;
+  border-radius: 10px;
+  float: left;
+  overflow: hidden;
+  padding: 10px;
+  width: 20%;
+}
+
+.checkbox_container {
+  float: left;
+  width: 30%;
+}
+
+.checkbox {
+  background-image: url("../unchecked.svg");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  margin-top: 50%;
+}
+
+.checkbox.checked {
+  background-image: url("../checked.png");
+  background-size: contain;
+}
+
+.blurb, .checkbox_container {
+  /* height: 50pt; */
+  margin-bottom: 20pt;
+}
+
+.blurb {
+  width: 70%;
+  border-bottom: 1px solid gray;
+}
+
+.blurb_image {
+  float: left;
+  padding-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.new_opinion {
+  clear: both;
+}
