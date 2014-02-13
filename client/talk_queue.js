@@ -2,7 +2,7 @@ Template.new_opinion.events({
   "keypress" : function(e) {
     var this_ = e.target;
     if(e.keyCode == 13) {
-      Meteor.call("add_opinion", this_.value, myId);
+      Meteor.call("add_opinion", myId, this_.value);
       this_.value = "";
     }
   }
@@ -22,14 +22,11 @@ Template.checkbox.events({
   }
 });
 
-meChecked = function(id) {
-  return Queue.findOne({_id: id, voters: myId});
+function meChecked(id) {
+  return Queue.find({_id: id, voters: myId}).count();
 }
 
-Handlebars.registerHelper("is_checked", function(id) {
-  //return meChecked(id);
-  return Queue.find({_id: id, voters: myId}).count();
-});
+Handlebars.registerHelper("is_checked", meChecked);
 
 Template.event_queue.blurbs = function() {
   return Queue.find({}, {sort: {upvotes: -1}});
