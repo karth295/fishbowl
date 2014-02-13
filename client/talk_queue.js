@@ -27,7 +27,8 @@ meChecked = function(id) {
 }
 
 Handlebars.registerHelper("is_checked", function(id) {
-  return meChecked(id);
+  //return meChecked(id);
+  return Queue.find({_id: id, voters: myId}).count();
 });
 
 Template.event_queue.blurbs = function() {
