@@ -9,7 +9,7 @@
 </template>
 
 <template name="blurb">
-  <div id="{{_id}}" class="blurb" style="float: left">
+  <div id="{{author}}" class="blurb" style="float: left">
     <img class="blurb_image" src="{{avatar_image}}" alt="Avatar/Image" />
     <p class="blurb_text">
         {{text}}
@@ -26,6 +26,6 @@
 
 <template name="checkbox">
 <div class="checkbox_container" style="float: left">
-  <div id="{{_id}}" class="checkbox {{#if is_checked _id}}checked{{/if}}"></div>
+  <div id="{{author}}" class="checkbox {{#if is_checked _id}}checked{{/if}}"></div>
 </div>
 </template>

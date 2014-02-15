@@ -8,16 +8,13 @@ Template.new_opinion.events({
   }
 });
 
-var my_votes = []
 Template.checkbox.events({
   "click" : function(e) {
     var this_ = e.target;
     if(meChecked(this._id)) {
       Meteor.call("remove_vote", this_.id, myId);
-      my_votes.splice(my_votes.indexOf(this_.id), 1);
     } else {
       Meteor.call("upvote", this_.id, myId);
-      my_votes.push(this._id);
     }
   }
 });
@@ -29,7 +26,7 @@ function meChecked(id) {
 Handlebars.registerHelper("is_checked", meChecked);
 
 Template.event_queue.blurbs = function() {
-  return Queue.find({}, {sort: {upvotes: -1}});
+  return Fishbowls.findOne().model.queue;
 }
 
 Template.blurb.avatar_image = function() {

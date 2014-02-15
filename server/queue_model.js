@@ -5,29 +5,28 @@ Meteor.methods({
 
   "add_opinion" : function(author, text) {
     var model = Fishbowls.findOne().model;
-    console.log(model);
-    var ret_value = model.addOpinion(author, text);
+    var ret_value = addOpinion(model, author, text);
     Fishbowls.update({}, {model: model});
-    return ret_value;    
+    return ret_value;
   },
 
   "upvote" : function(author, userId) {
     var model = Fishbowls.findOne().model;
-    var ret_value = model.addVote(author, userId);
+    var ret_value = addVote(model, author, userId);
     Fishbowls.update({}, {model: model});
     return ret_value;
   },
 
   "remove_vote" : function(id, userId) {
     var model = Fishbowls.findOne().model;
-    var ret_value = model.removeVote(author, userId);
+    var ret_value = removeVote(model, author, userId);
     Fishbowls.update({}, {model: model});
     return ret_value; 
   },
 
   "remove_max" : function() {
     var model = Fishbowls.findOne().model;
-    model.removeMax();
+    removeMax(model);
     Fishbowls.update({}, {model: model});
   }
 });
