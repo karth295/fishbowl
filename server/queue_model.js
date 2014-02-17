@@ -17,7 +17,7 @@ Meteor.methods({
     return ret_value;
   },
 
-  "remove_vote" : function(id, userId) {
+  "remove_vote" : function(author, userId) {
     var model = Fishbowls.findOne().model;
     var ret_value = removeVote(model, author, userId);
     Fishbowls.update({}, {model: model});
@@ -26,8 +26,9 @@ Meteor.methods({
 
   "remove_max" : function() {
     var model = Fishbowls.findOne().model;
-    removeMax(model);
+    var ret_val = removeMax(model);
     Fishbowls.update({}, {model: model});
+    return ret_val;
   }
 });
 

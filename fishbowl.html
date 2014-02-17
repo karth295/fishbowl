@@ -3,5 +3,13 @@
 </head>
 
 <body>
-  {{> event_queue}}
+  {{> main}}
 </body>
+
+<template name="main">
+{{#if isReady}}
+  {{> event_queue}}
+{{else}}
+  Loading data...
+{{/if}}
+</template>
