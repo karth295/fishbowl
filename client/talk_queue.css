@@ -17,8 +17,16 @@
   background-size: contain;
   width: 30px;
   height: 30px;
-  margin: auto;
+}
+
+.checkbox, .votebox {
+  float: left;
   margin-top: 50%;
+  margin-left: 10%;
+}
+
+.votebox {
+  color: gray;
 }
 
 .checkbox.checked {
@@ -28,7 +36,7 @@
 
 .blurb, .checkbox_container {
   /* height: 50pt; */
-  margin-bottom: 20pt;
+  padding-bottom: 20pt;
 }
 
 .blurb {
