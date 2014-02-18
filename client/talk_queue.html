@@ -1,32 +1,44 @@
 <template name="event_queue">
-  <div class="event_queue">
+  <h2 style="float: left; clear: both">On Deck!</h2>
+  <table class="event_queue" style="float: left; clear: both">
+    {{#with deck}} {{> blurb}} {{/with}}
+  </table>
+
+  <h2 style="float: left; clear: both">Talk Queue</h2>
+  <table class="event_queue" style="float: left; clear: both">
     {{#each blurbs}}
-      {{> blurb}}
-      {{> checkbox}}
+      {{> blurb_container}}
     {{/each}}
     {{> new_opinion}}
-  </div>
+  </table>
+</template>
+
+<template name="blurb_container">
+  <tr id="{{author}}" class="blurb_container">
+    {{> blurb}}
+    {{> checkbox}}
+  </tr>
 </template>
 
 <template name="blurb">
-  <div id="{{author}}" class="blurb" style="float: left">
+  <td class="blurb">
     <img class="blurb_image" src="{{avatar_image}}" alt="Avatar/Image" />
     <p class="blurb_text">
         {{text}}
     </p>
-  </div>
+  </td>
 </template>
 
 <template name="new_opinion">
   <div class="new_opinion">
-    Add your own thoughts
+    What is your opinion?
     <input class="opinion_text" type="text" />
   </div>
   </template>
 
 <template name="checkbox">
-<div class="checkbox_container" style="float: left">
-  <div id="{{author}}" class="checkbox {{#if is_checked author}}checked{{/if}}"></div>
+<td class="checkbox_container">
+  <div class="checkbox {{#if is_checked author}}checked{{/if}}" title="I would like to hear more about this"></div>
   <div class="votebox"> {{upvotes}} </div>
-</div>
+</td>
 </template>

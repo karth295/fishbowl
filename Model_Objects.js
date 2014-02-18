@@ -49,8 +49,6 @@ addVote = function(model, author, userId) {
 
   voters.push(userId);
   record.upvotes++;
-  //assert(model.queue[index].voters.length == 
-      //model.queue[index].upvotes, "Error in number of voters");
   return true; 
 }
 
@@ -71,8 +69,6 @@ removeVote = function(model, author, userId) {
   }
   voters.splice(index, 1);
   record.upvotes--;
-  //assert(model.queue[index].voters.length == 
-      //model.queue[index].upvotes, "Error in number of voters");
   
   return true;
 }
@@ -81,14 +77,18 @@ removeVote = function(model, author, userId) {
 //The previous opinion on deck is removed.
 //Returns: false if there were no opinions to remove. True otherwise
 removeMax = function(model) {
-  if(model.queue.length < 1) {
-    return false;
+  model.queue.sort(function(a, b) { return b.upvotes - a.upvotes; });
+  var old_ondeck = model.ondeck;
+  if(old_ondeck) {
+    model.incenter.push(old_ondeck);
+    if(model.incenter.length > 4) {
+      model.incenter.shift();   //Throw person who has been in longest out
+    }
   }
 
-  //Move the top value to ondeck
-  var max = model.queue[0];
-  model.queue.splice(0, 1);
-  model.ondeck = max;
+  if(model.queue.length) {
+    model.ondeck = model.queue.shift();   //Top of the queue comes on deck
+  }
 }
 
 //A class to represent an "opinion" in the fishbowl world

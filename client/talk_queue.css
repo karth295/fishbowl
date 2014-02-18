@@ -1,47 +1,45 @@
 .event_queue { 
-  border: solid gray 2px;
-  border-radius: 10px;
   float: left;
   overflow: hidden;
   padding: 10px;
-  width: 20%;
+  width: 25%;
 }
 
-.checkbox_container {
-  float: left;
+tr {
+  vertical-align: middle;
+}
+
+td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+td.blurb {
+  width: 70%;
+}
+
+td.checkbox_container {
   width: 30%;
 }
 
 .checkbox {
-  background-image: url("../unchecked.svg");
-  background-size: contain;
+  float: left;
+  margin-right: 5px;
   width: 30px;
   height: 30px;
-}
-
-.checkbox, .votebox {
-  float: left;
-  margin-top: 50%;
-  margin-left: 10%;
+  background-image: url("../unchecked.svg");
+  background-size: contain;
 }
 
 .votebox {
   color: gray;
+  float: left;
+  width: 5px;
 }
 
 .checkbox.checked {
   background-image: url("../checked.png");
   background-size: contain;
-}
-
-.blurb, .checkbox_container {
-  /* height: 50pt; */
-  padding-bottom: 20pt;
-}
-
-.blurb {
-  width: 70%;
-  border-bottom: 1px solid gray;
 }
 
 .blurb_image {
@@ -53,4 +51,16 @@
 
 .new_opinion {
   clear: both;
+}
+
+table {
+  border-radius: 10px;
+}
+
+tr .blurb {
+  border-bottom: 1px solid gray;
+}
+
+table, tr {
+  border: 2px solid gray;
 }

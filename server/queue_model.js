@@ -3,6 +3,10 @@ Meteor.methods({
     return Fishbowls.insert({model: new Model()});
   },
 
+  "start" : function() {
+    var timer = Meteor.setInterval(remove_max, 10 * 1000);
+  },
+
   "add_opinion" : function(author, text) {
     var model = Fishbowls.findOne().model;
     var ret_value = addOpinion(model, author, text);
@@ -22,15 +26,15 @@ Meteor.methods({
     var ret_value = removeVote(model, author, userId);
     Fishbowls.update({}, {model: model});
     return ret_value; 
-  },
-
-  "remove_max" : function() {
-    var model = Fishbowls.findOne().model;
-    var ret_val = removeMax(model);
-    Fishbowls.update({}, {model: model});
-    return ret_val;
   }
 });
+
+function remove_max() {
+  var model = Fishbowls.findOne().model;
+  var ret_val = removeMax(model);
+  Fishbowls.update({}, {model: model});
+  return ret_val; 
+}
 
 function assert(condition, message) { 
   if (!condition)
