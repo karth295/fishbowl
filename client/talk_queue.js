@@ -50,6 +50,10 @@ Template.event_queue.deck = function() {
   return Fishbowls.findOne().model.ondeck;
 }
 
+Template.event_queue.center = function() {
+  return Fishbowls.findOne().model.incenter;
+}
+
 Template.blurb.avatar_image = function() {
   return "../avatars.jpg";
 }
