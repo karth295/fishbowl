@@ -34,7 +34,7 @@ function getAuthor(element) {
 function meChecked(id) {
   console.log("meChecked..." + id);
   var model = Fishbowls.findOne().model;
-  var index = queueIndex(model, id);
+  var index = queueIndex(model.queue, id);
   if(index == -1)
     return false;
   return model.queue[index].voters.indexOf(myId) != -1;
