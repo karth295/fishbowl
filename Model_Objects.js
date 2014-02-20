@@ -1,3 +1,4 @@
+MAX_IN_CENTER = 3;
 //The main bookkeeper of the current model
 Model = function() {
   this.ondeck = null;
@@ -87,7 +88,7 @@ removeMax = function(model) {
   var old_ondeck = model.ondeck;
   if(old_ondeck) {
     model.incenter.push(old_ondeck);
-    if(model.incenter.length > 4) {
+    if(model.incenter.length > MAX_IN_CENTER) {
       model.incenter.shift();   //Throw person who has been in longest out
     }
   }
