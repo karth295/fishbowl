@@ -17,6 +17,7 @@
     
     {{#isolate}} {{> new_opinion}} {{/isolate}}
   </table>
+  Time until next rotation: {{#isolate}} {{#with model}} {{rotate_time}} {{/with}} {{/isolate}}
 </div>
 </template>
 

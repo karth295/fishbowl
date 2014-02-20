@@ -3,6 +3,12 @@ Model = function() {
   this.ondeck = null;
   this.queue = [];
   this.incenter = [];
+  this.rotate_time = null;
+}
+
+//Set rotate_time to this
+setRotationTime = function(model, seconds) {
+  model.rotate_time = seconds;
 }
 
 //Return the index of the author's opinion

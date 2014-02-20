@@ -54,6 +54,10 @@ Template.event_queue.center = function() {
   return Fishbowls.findOne().model.incenter;
 }
 
+Template.event_queue.model = function() {
+  return Fishbowls.findOne().model;
+}
+
 Template.blurb.avatar_image = function() {
   return "../avatars.jpg";
 }

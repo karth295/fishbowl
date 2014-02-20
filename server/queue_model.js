@@ -1,4 +1,6 @@
 timer = null;
+second_timer = null;
+rotate_seconds = 0;
 Meteor.methods({
   "init" : function() {
     return Fishbowls.insert({model: new Model()});
@@ -8,8 +10,20 @@ Meteor.methods({
     Fishbowls.update({}, {model: new Model()});
   },
 
-  "start" : function() {
-    timer = Meteor.setInterval(remove_max, 10 * 1000);
+  "start" : function(seconds) {
+    rotate_seconds = seconds;
+    var model = Fishbowls.findOne().model;
+    var ret_value = setRotationTime(model, seconds);
+    Fishbowls.update({}, {model: model});
+    if(timer) {
+      Meteor.clearInterval(timer);
+    }
+    if(second_timer) {
+      Meteor.clearInterval(second_timer);
+    }
+    second_timer = Meteor.setInterval(second_update, 1000);
+    timer = Meteor.setInterval(remove_max, seconds * 1000);
+    return ret_value;
   },
 
   "pause" : function() {
@@ -43,6 +57,7 @@ Meteor.methods({
 function remove_max() {
   var model = Fishbowls.findOne().model;
   var ret_val = removeMax(model);
+  setRotationTime(model, rotate_seconds);
   Fishbowls.update({}, {model: model});
   return ret_val; 
 }
@@ -50,4 +65,12 @@ function remove_max() {
 function assert(condition, message) { 
   if (!condition)
     throw Error("Assert failed" + (typeof message !== "undefined" ? ": " + message : ""));
+}
+
+function second_update() {
+  var model = Fishbowls.findOne().model;
+  if(model.rotate_time && model.rotate_time > 0) {
+    model.rotate_time--;
+    Fishbowls.update({}, {model: model});
+  }
 }
