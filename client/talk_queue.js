@@ -2,18 +2,14 @@ Template.new_opinion.events({
   "keypress" : function(e) {
     var this_ = e.target;
     if(e.keyCode == 13) {
-      console.log("add opinion...");
-      Meteor.call("add_opinion", myId, this_.value, function(error, code) {
-        if(code)
-          toastr.success("Opinion added successfully");
-        else
-          toastr.error("You can only have one opinion in the queue at a time");
-      });
-      this_.value = "";
+      opinionCreated(e.target);
     }
+  },
+
+  "click #submitOpinion" : function(e) {
+    opinionCreated(e.target.parentNode.querySelector(".opinion_text"));
   }
 });
-
 Template.checkbox.events({
   "click" : function(e) {
     var thisID = getAuthor(e.target);
@@ -26,6 +22,20 @@ Template.checkbox.events({
     }
   }
 });
+
+function opinionCreated(this_) {
+  if(this_.value.trim() == "") {
+    return;
+  }
+  console.log("add opinion...");
+  Meteor.call("add_opinion", myId, this_.value.trim(), function(error, code) {
+    if(code)
+      toastr.success("Opinion added successfully");
+    else
+      toastr.error("You can only have one opinion in the queue at a time"); 
+  });
+  this_.value = "";
+}
 
 function getAuthor(element) {
   return element.parentNode.parentNode.id;
