@@ -1,0 +1,12 @@
+<template name="login">
+<div>
+	{{#if currentUser}}
+		Logged in as {{currentUser.username}}
+	{{else}}
+	<h2 id="login_banner">Please login to begin</h2>
+	<h3>Who are you:</h3>
+	Username: <input id="login_name" type="text" /><br />
+	<button id="login">Get started</button>
+	{{/if}}
+</div>
+</template>

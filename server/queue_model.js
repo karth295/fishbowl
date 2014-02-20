@@ -1,10 +1,21 @@
+timer = null;
 Meteor.methods({
   "init" : function() {
     return Fishbowls.insert({model: new Model()});
   },
 
+  "clear" : function() {
+    Fishbowls.update({}, {model: new Model()});
+  },
+
   "start" : function() {
-    var timer = Meteor.setInterval(remove_max, 10 * 1000);
+    timer = Meteor.setInterval(remove_max, 10 * 1000);
+  },
+
+  "pause" : function() {
+    if(timer != null) {
+      Meteor.clearInterval(timer);
+    }
   },
 
   "add_opinion" : function(author, text) {

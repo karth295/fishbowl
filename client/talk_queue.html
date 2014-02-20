@@ -1,23 +1,23 @@
 <template name="event_queue">
-  <h2 style="float: left; clear: both">On Deck!</h2>
-  <table class="event_queue" style="float: left; clear: both">
-    {{#with deck}} {{> blurb}} {{/with}}
+<div id="sidebar_wrapper">
+  <h2>On Deck!</h2>
+  <p><em>You're up next!</em></p>
+  <table class="event_queue">
+    {{#isolate}} {{#with deck}} {{> blurb}} {{/with}} {{/isolate}}
   </table>
 
-  <h2 style="float: left; clear: both">Talk Queue</h2>
-  <table class="event_queue" style="float: left; clear: both">
+  <h2>Talk Queue</h2>
+  <p><em>Vote for the opinions you would like to hear, and add your own</em></p>
+  <table class="event_queue">
+    {{#isolate}}
     {{#each blurbs}}
       {{> blurb_container}}
     {{/each}}
-    {{> new_opinion}}
+    {{/isolate}}
+    
+    {{#isolate}} {{> new_opinion}} {{/isolate}}
   </table>
-
-  <h2 style="float: left; clear: both">Center</h2>
-  <table class="event_queue" style="float: left; clear: both">
-    {{#each center}}
-      {{> blurb}}
-    {{/each}}
-  </table>
+</div>
 </template>
 
 <template name="blurb_container">
@@ -31,7 +31,7 @@
   <td class="blurb">
     <img class="blurb_image" src="{{avatar_image}}" alt="Avatar/Image" />
     <p class="blurb_text">
-        {{text}}
+      {{text}}
     </p>
   </td>
 </template>
@@ -39,9 +39,9 @@
 <template name="new_opinion">
   <div class="new_opinion">
     What is your opinion?
-    <input class="opinion_text" type="text" />
+    <input class="opinion_text" type="text" maxlength="140"/>
   </div>
-  </template>
+</template>
 
 <template name="checkbox">
 <td class="checkbox_container">
